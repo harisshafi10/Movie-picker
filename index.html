@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Movie Picker</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#4f46e5',
+                        'primary-dark': '#4338ca',
+                        'background': '#f9fafb',
+                        'card-bg': '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-background min-h-screen flex items-center justify-center p-4 font-sans">
+    <div id="app-container" class="w-full max-w-lg bg-card-bg shadow-2xl rounded-xl p-6 md:p-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-2 text-center">🍿 Movie Picker</h1>
+        <p class="text-gray-600 mb-6 text-center">Tell me a genre, and I'll suggest one great movie using live data.</p>
+
+        <div class="space-y-4">
+            <div>
+                <label for="genre-input" class="block text-sm font-medium text-gray-700 mb-1">
+                    Enter Genre (e.g., Sci-Fi, Comedy, Thriller)
+                </label>
+                <input type="text" id="genre-input" placeholder="Action"
+                       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary transition duration-150">
+            </div>
+
+            <button id="suggest-button"
+                    class="w-full bg-primary text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-primary-dark transition duration-200 flex items-center justify-center disabled:opacity-50">
+                <span id="button-text">Suggest Movie!</span>
+                <div id="loading-spinner" class="hidden flex items-center space-x-1">
+                    <div class="loading-dot h-3 w-3 bg-white rounded-full"></div>
+                    <div class="loading-dot h-3 w-3 bg-white rounded-full"></div>
+                    <div class="loading-dot h-3 w-3 bg-white rounded-full"></div>
+                </div>
+            </button>
+        </div>
+
+        <div id="results-container" class="mt-8 pt-6 border-t border-gray-200">
+            <h2 class="text-xl font-bold text-gray-800 mb-4 hidden" id="results-title">Your Movie Suggestion:</h2>
+            <div id="movie-result" class="text-gray-900 text-lg leading-relaxed bg-gray-50 p-4 rounded-lg shadow-inner">
+                <p class="text-gray-500 italic text-center">Waiting for your genre...</p>
+            </div>
+
+            <div id="sources-area" class="mt-4 hidden">
+                <p class="text-xs font-medium text-gray-700 mb-1">Sources:</p>
+                <ul id="sources-list" class="text-xs text-gray-500 space-y-1"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
